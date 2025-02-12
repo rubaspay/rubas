@@ -59,8 +59,10 @@ RUN set -ex; \
     "clang-tidy-${LLVM_VERSION}" \
     "libc++-${LLVM_VERSION}-dev" \
     "libc++abi-${LLVM_VERSION}-dev" \
+    "libclang-${LLVM_VERSION}-dev" \
     "libclang-rt-${LLVM_VERSION}-dev" \
-    "lld-${LLVM_VERSION}"; \
+    "lld-${LLVM_VERSION}" \
+    "llvm-${LLVM_VERSION}-dev"; \
     rm -rf /var/lib/apt/lists/*; \
     echo "Setting defaults..."; \
     lldbUpdAltArgs="update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-${LLVM_VERSION} 100"; \
@@ -125,6 +127,14 @@ RUN set -ex; \
     mkdir /usr/local/share/Cppcheck && ln -s /opt/cppcheck/cfg/ /usr/local/share/Cppcheck/cfg; \
     rm -rf /tmp/cppcheck.tar.gz
 ENV PATH="/opt/cppcheck/build/bin:${PATH}"
+
+RUN set -ex; \
+    git clone --depth=1 "https://github.com/include-what-you-use/include-what-you-use" -b "clang_${LLVM_VERSION}" /opt/iwyu; \
+    cd /opt/iwyu; \
+    mkdir build && cd build; \
+    cmake -G 'Unix Makefiles' -DCMAKE_PREFIX_PATH=/usr/lib/llvm-${LLVM_VERSION} ..; \
+    make install -j "$(( $(nproc) - 1 ))"; \
+    cd /opt && rm -rf /opt/iwyu;
 
 ARG SHELLCHECK_VERSION=v0.7.1
 RUN set -ex; \
