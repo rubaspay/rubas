@@ -14,6 +14,7 @@ RUN set -ex; \
     autotools-dev \
     automake \
     autoconf \
+    bear \
     bison \
     build-essential \
     bsdmainutils \
@@ -58,12 +59,14 @@ RUN set -ex; \
     "clang-tidy-${LLVM_VERSION}" \
     "libc++-${LLVM_VERSION}-dev" \
     "libc++abi-${LLVM_VERSION}-dev" \
+    "libclang-${LLVM_VERSION}-dev" \
     "libclang-rt-${LLVM_VERSION}-dev" \
-    "lld-${LLVM_VERSION}"; \
+    "lld-${LLVM_VERSION}" \
+    "llvm-${LLVM_VERSION}-dev"; \
     rm -rf /var/lib/apt/lists/*; \
     echo "Setting defaults..."; \
     lldbUpdAltArgs="update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-${LLVM_VERSION} 100"; \
-    for binName in clang clang++ clang-format clang-tidy clangd dsymutil lld lldb lldb-server llvm-ar llvm-cov llvm-nm llvm-objdump llvm-ranlib llvm-strip; do \
+    for binName in clang clang++ clang-apply-replacements clang-format clang-tidy clangd dsymutil lld lldb lldb-server llvm-ar llvm-cov llvm-nm llvm-objdump llvm-ranlib llvm-strip run-clang-tidy; do \
         lldbUpdAltArgs="${lldbUpdAltArgs} --slave /usr/bin/${binName} ${binName} /usr/bin/${binName}-${LLVM_VERSION}"; \
     done; \
     for binName in ld64.lld ld.lld lld-link wasm-ld; do \
@@ -124,6 +127,14 @@ RUN set -ex; \
     mkdir /usr/local/share/Cppcheck && ln -s /opt/cppcheck/cfg/ /usr/local/share/Cppcheck/cfg; \
     rm -rf /tmp/cppcheck.tar.gz
 ENV PATH="/opt/cppcheck/build/bin:${PATH}"
+
+RUN set -ex; \
+    git clone --depth=1 "https://github.com/include-what-you-use/include-what-you-use" -b "clang_${LLVM_VERSION}" /opt/iwyu; \
+    cd /opt/iwyu; \
+    mkdir build && cd build; \
+    cmake -G 'Unix Makefiles' -DCMAKE_PREFIX_PATH=/usr/lib/llvm-${LLVM_VERSION} ..; \
+    make install -j "$(( $(nproc) - 1 ))"; \
+    cd /opt && rm -rf /opt/iwyu;
 
 ARG SHELLCHECK_VERSION=v0.7.1
 RUN set -ex; \
