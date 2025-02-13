@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021-2024 The Dash Core developers
+# Copyright (c) 2021-2024 The Rubas Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +10,7 @@ from test_framework.p2p import (
     p2p_lock,
     P2PInterface,
 )
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import RubasTestFramework
 from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
@@ -115,10 +115,10 @@ class QuorumDataInterface(P2PInterface):
         return self.last_message["qdata"]
 
 
-class QuorumDataMessagesTest(DashTestFramework):
+class QuorumDataMessagesTest(RubasTestFramework):
     def set_test_params(self):
         extra_args = [["-llmq-data-recovery=0", "-deprecatedrpc=banscore"]] * 4
-        self.set_dash_test_params(4, 3, extra_args=extra_args)
+        self.set_rubas_test_params(4, 3, extra_args=extra_args)
 
     def restart_mn(self, mn, reindex=False):
         args = self.extra_args[mn.node.index] + ['-masternodeblsprivkey=%s' % mn.keyOperator]

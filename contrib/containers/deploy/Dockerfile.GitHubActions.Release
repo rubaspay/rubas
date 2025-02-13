@@ -1,21 +1,21 @@
 FROM ubuntu:noble
-LABEL maintainer="Dash Developers <dev@dash.org>"
-LABEL description="Dockerised DashCore"
+LABEL maintainer="Rubas Developers <dev@rubas.org>"
+LABEL description="Dockerised RubasCore"
 
 ARG USER_ID
 ARG GROUP_ID
 ARG TAG
 ARG GITHUB_REPOSITORY
 
-ENV HOME /home/dash
+ENV HOME /home/rubas
 
 # Setup unprivileged user
 ARG USER_ID=1000 \
     GROUP_ID=1000
-RUN groupmod -g ${GROUP_ID} -n dash ubuntu; \
-    usermod -u ${USER_ID} -md /home/dash -l dash ubuntu; \
-    mkdir -p /home/dash/.dashcore && \
-    chown ${USER_ID}:${GROUP_ID} -R /home/dash
+RUN groupmod -g ${GROUP_ID} -n rubas ubuntu; \
+    usermod -u ${USER_ID} -md /home/rubas -l rubas ubuntu; \
+    mkdir -p /home/rubas/.rubascore && \
+    chown ${USER_ID}:${GROUP_ID} -R /home/rubas
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
@@ -23,14 +23,14 @@ RUN apt-get update && \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo "https://github.com/${GITHUB_REPOSITORY}/releases/download/v${TAG}/dashcore-${TAG}-$arch.tar.gz"
+RUN echo "https://github.com/${GITHUB_REPOSITORY}/releases/download/v${TAG}/rubascore-${TAG}-$arch.tar.gz"
 
 RUN mach=$(uname -m) \
       && case $mach in aarch64) arch="aarch64-linux-gnu"; ;; x86_64) arch="x86_64-linux-gnu"; ;;  *) echo "ERROR: Machine type $mach not supported."; ;; esac \
-      && wget https://github.com/${GITHUB_REPOSITORY}/releases/download/v${TAG}/dashcore-${TAG}-$arch.tar.gz -P /tmp \
-      && tar -xvf /tmp/dashcore-*.tar.gz -C /tmp/ \
-      && find /tmp/dashcore*/bin -type f ! -name 'dash-qt' -exec cp {} /usr/local/bin \; \
-      && rm -rf /tmp/dashcore* \
+      && wget https://github.com/${GITHUB_REPOSITORY}/releases/download/v${TAG}/rubascore-${TAG}-$arch.tar.gz -P /tmp \
+      && tar -xvf /tmp/rubascore-*.tar.gz -C /tmp/ \
+      && find /tmp/rubascore*/bin -type f ! -name 'rubas-qt' -exec cp {} /usr/local/bin \; \
+      && rm -rf /tmp/rubascore* \
       && chmod a+x /usr/local/bin/*
 
 RUN apt-get update && \
@@ -41,13 +41,13 @@ RUN apt-get update && \
     && apt-get -y autoremove \
     && rm -rf /var/lib/apt/lists/*
 
-USER dash
+USER rubas
 
-VOLUME ["/home/dash"]
+VOLUME ["/home/rubas"]
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 9998 9999 19998 19999
 
-WORKDIR /home/dash
+WORKDIR /home/rubas

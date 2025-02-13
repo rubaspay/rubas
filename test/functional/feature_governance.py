@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2025 The Dash Core developers
+# Copyright (c) 2018-2025 The Rubas Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Tests around dash governance."""
+"""Tests around rubas governance."""
 
 import json
 
 from test_framework.messages import uint256_to_string
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import RubasTestFramework
 from test_framework.governance import have_trigger_for_height, prepare_object
 from test_framework.util import assert_equal, satoshi_round
 
 GOVERNANCE_UPDATE_MIN = 60 * 60 # src/governance/object.h
 
-class DashGovernanceTest (DashTestFramework):
+class RubasGovernanceTest (RubasTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(6, 5, [[
+        self.set_rubas_test_params(6, 5, [[
             "-budgetparams=10:10:10",
             '-testactivationheight=v20@160',
         ]] * 6)
@@ -351,4 +351,4 @@ class DashGovernanceTest (DashTestFramework):
 
 
 if __name__ == '__main__':
-    DashGovernanceTest().main()
+    RubasGovernanceTest().main()

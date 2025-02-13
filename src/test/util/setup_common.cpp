@@ -100,25 +100,25 @@ std::ostream& operator<<(std::ostream& os, const uint256& num)
     return os;
 }
 
-void DashChainstateSetup(ChainstateManager& chainman,
+void RubasChainstateSetup(ChainstateManager& chainman,
                          NodeContext& node,
                          bool fReset,
                          bool fReindexChainState,
                          const Consensus::Params& consensus_params)
 {
-    DashChainstateSetup(chainman, *Assert(node.govman.get()), *Assert(node.mn_metaman.get()), *Assert(node.mn_sync.get()),
+    RubasChainstateSetup(chainman, *Assert(node.govman.get()), *Assert(node.mn_metaman.get()), *Assert(node.mn_sync.get()),
                         *Assert(node.sporkman.get()), node.mn_activeman, node.chain_helper, node.cpoolman, node.dmnman,
                         node.evodb, node.mnhf_manager, node.llmq_ctx, Assert(node.mempool.get()), fReset, fReindexChainState,
                         consensus_params);
 }
 
-void DashChainstateSetupClose(NodeContext& node)
+void RubasChainstateSetupClose(NodeContext& node)
 {
-    DashChainstateSetupClose(node.chain_helper, node.cpoolman, node.dmnman, node.mnhf_manager, node.llmq_ctx,
+    RubasChainstateSetupClose(node.chain_helper, node.cpoolman, node.dmnman, node.mnhf_manager, node.llmq_ctx,
                              Assert(node.mempool.get()));
 }
 
-void DashPostChainstateSetup(NodeContext& node)
+void RubasPostChainstateSetup(NodeContext& node)
 {
     node.cj_ctx = std::make_unique<CJContext>(*node.chainman, *node.connman, *node.dmnman, *node.mn_metaman, *node.mempool,
                                               /*mn_activeman=*/nullptr, *node.mn_sync, *node.llmq_ctx->isman, node.peerman,
@@ -128,7 +128,7 @@ void DashPostChainstateSetup(NodeContext& node)
 #endif // ENABLE_WALLET
 }
 
-void DashPostChainstateSetupClose(NodeContext& node)
+void RubasPostChainstateSetupClose(NodeContext& node)
 {
 #ifdef ENABLE_WALLET
     node.coinjoin_loader.reset();
@@ -334,7 +334,7 @@ TestingSetup::TestingSetup(const std::string& chainName, const std::vector<const
         m_node.connman->Init(options);
     }
 
-    DashPostChainstateSetup(m_node);
+    RubasPostChainstateSetup(m_node);
 
     BlockValidationState state;
     if (!m_node.chainman->ActiveChainstate().ActivateBestChain(state)) {
@@ -344,7 +344,7 @@ TestingSetup::TestingSetup(const std::string& chainName, const std::vector<const
 
 TestingSetup::~TestingSetup()
 {
-    DashPostChainstateSetupClose(m_node);
+    RubasPostChainstateSetupClose(m_node);
 
     // Interrupt() and PrepareShutdown() routines
     if (m_node.llmq_ctx) {
@@ -355,9 +355,9 @@ TestingSetup::~TestingSetup()
         m_node.connman->Stop();
     }
 
-    // DashChainstateSetup() is called by LoadChainstate() internally but
+    // RubasChainstateSetup() is called by LoadChainstate() internally but
     // winding them down is our responsibility
-    DashChainstateSetupClose(m_node);
+    RubasChainstateSetupClose(m_node);
 
     m_node.peerman.reset();
     m_node.banman.reset();

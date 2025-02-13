@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -43,7 +43,7 @@ class TxViewDelegate : public QAbstractItemDelegate
     Q_OBJECT
 public:
     explicit TxViewDelegate(QObject* parent = nullptr) :
-        QAbstractItemDelegate(), unit(BitcoinUnits::DASH)
+        QAbstractItemDelegate(), unit(BitcoinUnits::RUBAS)
     {
         connect(this, &TxViewDelegate::width_changed, this, &TxViewDelegate::sizeHintChanged);
     }
@@ -310,7 +310,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
     this->walletModel = model;
     if(model && model->getOptionsModel())
     {
-        // update the display unit, to not use the default ("DASH")
+        // update the display unit, to not use the default ("RUBAS")
         updateDisplayUnit();
         // Keep up to date with wallet
         interfaces::Wallet& wallet = model->wallet();

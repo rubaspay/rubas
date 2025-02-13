@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 
     BitcoinApplication app;
     app.setNode(*node);
-    app.setApplicationName("Dash-Qt-test");
+    app.setApplicationName("Rubas-Qt-test");
 
     app.node().context()->args = &gArgs;     // Make gArgs available in the NodeContext
 

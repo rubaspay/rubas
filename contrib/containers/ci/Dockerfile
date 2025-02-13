@@ -133,12 +133,12 @@ RUN pip3 install --no-cache-dir \
     pyzmq==22.3.0 \
     vulture==2.3
 
-ARG DASH_HASH_VERSION=1.4.0
+ARG RUBAS_HASH_VERSION=1.4.0
 RUN set -ex; \
     cd /tmp; \
-    git clone --depth 1 --no-tags --branch=${DASH_HASH_VERSION} https://github.com/dashpay/dash_hash; \
-    cd dash_hash && pip3 install -r requirements.txt .; \
-    cd .. && rm -rf dash_hash
+    git clone --depth 1 --no-tags --branch=${RUBAS_HASH_VERSION} https://github.com/rubaspay/rubas_hash; \
+    cd rubas_hash && pip3 install -r requirements.txt .; \
+    cd .. && rm -rf rubas_hash
 
 ARG SHELLCHECK_VERSION=v0.7.1
 RUN set -ex; \
@@ -150,11 +150,11 @@ ENV PATH="/opt/shellcheck:${PATH}"
 ARG USER_ID=1000 \
     GROUP_ID=1000
 RUN set -ex; \
-    groupmod -g ${GROUP_ID} -n dash ubuntu; \
-    usermod -u ${USER_ID} -md /home/dash -l dash ubuntu; \
-    mkdir -p /home/dash/.config/gdb; \
-    echo "add-auto-load-safe-path /usr/lib/llvm-${LLVM_VERSION}/lib" | tee /home/dash/.config/gdb/gdbinit; \
-    chown ${USER_ID}:${GROUP_ID} -R /home/dash
+    groupmod -g ${GROUP_ID} -n rubas ubuntu; \
+    usermod -u ${USER_ID} -md /home/rubas -l rubas ubuntu; \
+    mkdir -p /home/rubas/.config/gdb; \
+    echo "add-auto-load-safe-path /usr/lib/llvm-${LLVM_VERSION}/lib" | tee /home/rubas/.config/gdb/gdbinit; \
+    chown ${USER_ID}:${GROUP_ID} -R /home/rubas
 
 # Packages needed for all target builds
 RUN apt-get update && apt-get install $APT_ARGS \
@@ -180,7 +180,7 @@ RUN \
   exit 0
 
 RUN \
-  mkdir -p /src/dash && \
+  mkdir -p /src/rubas && \
   mkdir -p /cache/ccache && \
   mkdir /cache/depends && \
   mkdir /cache/sdk-sources && \
@@ -189,6 +189,6 @@ RUN \
   chown ${USER_ID}:${GROUP_ID} /cache && \
   chown ${USER_ID}:${GROUP_ID} -R /cache
 
-WORKDIR /src/dash
+WORKDIR /src/rubas
 
-USER dash
+USER rubas

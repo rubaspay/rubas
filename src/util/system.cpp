@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Dash Core developers
+// Copyright (c) 2014-2025 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -86,7 +86,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-//Dash only features
+//Rubas only features
 bool fMasternodeMode = false;
 const std::string gCoinJoinName = "CoinJoin";
 
@@ -99,7 +99,7 @@ const std::string gCoinJoinName = "CoinJoin";
 */
 int nWalletBackups = 10;
 
-const char * const BITCOIN_CONF_FILENAME = "dash.conf";
+const char * const BITCOIN_CONF_FILENAME = "rubas.conf";
 const char * const BITCOIN_SETTINGS_FILENAME = "settings.json";
 
 ArgsManager gArgs;
@@ -329,7 +329,7 @@ bool ArgsManager::ParseParameters(int argc, const char* const argv[], std::strin
 
     for (int i = 1; i < argc; i++) {
         std::string key(argv[i]);
-        if (key == "-") break; //dash-tx using stdin
+        if (key == "-") break; //rubas-tx using stdin
 
 #ifdef MAC_OSX
         // At the first time when a user gets the "App downloaded from the
@@ -353,7 +353,7 @@ bool ArgsManager::ParseParameters(int argc, const char* const argv[], std::strin
 
         if (key[0] != '-') {
             if (!m_accept_any_command && m_command.empty()) {
-                // The first non-dash arg is a registered command
+                // The first non-rubas arg is a registered command
                 std::optional<unsigned int> flags = GetArgFlags(key);
                 if (!flags || !(*flags & ArgsManager::COMMAND)) {
                     error = strprintf("Invalid command '%s'", argv[i]);
@@ -844,12 +844,12 @@ void PrintExceptionContinue(const std::exception_ptr pex, const char* pszExcepti
 
 fs::path GetDefaultDataDir()
 {
-    // Windows: C:\Users\Username\AppData\Roaming\DashCore
-    // macOS: ~/Library/Application Support/DashCore
-    // Unix-like: ~/.dashcore
+    // Windows: C:\Users\Username\AppData\Roaming\RubasCore
+    // macOS: ~/Library/Application Support/RubasCore
+    // Unix-like: ~/.rubascore
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "DashCore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "RubasCore";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -859,10 +859,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // macOS
-    return pathRet / "Library/Application Support/DashCore";
+    return pathRet / "Library/Application Support/RubasCore";
 #else
     // Unix-like
-    return pathRet / ".dashcore";
+    return pathRet / ".rubascore";
 #endif
 #endif
 }
@@ -1038,7 +1038,7 @@ bool ArgsManager::ReadConfigFiles(std::string& error, bool ignore_invalid_keys)
             }
         }
     } else {
-        // Create an empty dash.conf if it does not exist
+        // Create an empty rubas.conf if it does not exist
         std::ofstream configFile{GetConfigFile(confPath), std::ios_base::app};
         if (!configFile.good())
             return false;
@@ -1451,9 +1451,9 @@ std::string CopyrightHolders(const std::string& strPrefix, unsigned int nStartYe
     const auto copyright_devs = strprintf(_(COPYRIGHT_HOLDERS).translated, COPYRIGHT_HOLDERS_SUBSTITUTION);
     std::string strCopyrightHolders = strPrefix + strprintf(" %u-%u ", nStartYear, nEndYear) + copyright_devs;
 
-    // Check for untranslated substitution to make sure Dash Core copyright is not removed by accident
-    if (copyright_devs.find("Dash Core") == std::string::npos) {
-        strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2014, nEndYear) + "The Dash Core developers";
+    // Check for untranslated substitution to make sure Rubas Core copyright is not removed by accident
+    if (copyright_devs.find("Rubas Core") == std::string::npos) {
+        strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2014, nEndYear) + "The Rubas Core developers";
     }
     // Check for untranslated substitution to make sure Bitcoin Core copyright is not removed by accident
     if (copyright_devs.find("Bitcoin Core") == std::string::npos) {

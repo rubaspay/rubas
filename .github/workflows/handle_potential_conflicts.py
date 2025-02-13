@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022-2024 The Dash Core developers
+# Copyright (c) 2022-2024 The Rubas Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,7 +25,7 @@ import requests
 import hjson
 
 def get_pr_json(pr_num):
-    return requests.get(f'https://api.github.com/repos/dashpay/dash/pulls/{pr_num}').json()
+    return requests.get(f'https://api.github.com/repos/rubaspay/rubas/pulls/{pr_num}').json()
 
 def main():
     if len(sys.argv) != 2:
@@ -61,7 +61,7 @@ def main():
             print(f'{conflict_pr_num} is a draft. Skipping conflict check')
             continue
 
-        pre_mergeable = requests.get(f'https://github.com/dashpay/dash/branches/pre_mergeable/{our_pr_label}...{conflict_pr_label}')
+        pre_mergeable = requests.get(f'https://github.com/rubaspay/rubas/branches/pre_mergeable/{our_pr_label}...{conflict_pr_label}')
         if "These branches can be automatically merged." in pre_mergeable.text:
             good.append(conflict_pr_num)
         elif "Can’t automatically merge" in pre_mergeable.text:

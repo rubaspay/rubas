@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2023-2025 The Dash Core developers
+# Copyright (c) 2023-2025 The Rubas Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,16 +16,16 @@ from test_framework.messages import (
     ser_string,
 )
 
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import RubasTestFramework
 from test_framework.util import (
     assert_equal,
     get_bip9_details,
 )
 
-class MnehfTest(DashTestFramework):
+class MnehfTest(RubasTestFramework):
     def set_test_params(self):
         extra_args = [["-vbparams=testdummy:0:999999999999:0:4:4:4:5:1", "-persistmempool=0"]] * 4
-        self.set_dash_test_params(4, 3, extra_args=extra_args)
+        self.set_rubas_test_params(4, 3, extra_args=extra_args)
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()

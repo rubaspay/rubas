@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-systemd: dashd.service
-Upstart: dashd.conf
-OpenRC:  dashd.openrc
-         dashd.openrcconf
-CentOS:  dashd.init
-macOS:   org.dash.dashd.plist
+systemd: rubasd.service
+Upstart: rubasd.conf
+OpenRC:  rubasd.openrc
+         rubasd.openrcconf
+CentOS:  rubasd.init
+macOS:   org.rubas.rubasd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

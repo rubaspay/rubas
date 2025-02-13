@@ -1,4 +1,4 @@
-// Copyright (c) 2024 The Dash Core developers
+// Copyright (c) 2024 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +13,7 @@ class CWallet;
 
 namespace interfaces {
 namespace CoinJoin {
-//! Interface for the wallet constrained src/coinjoin part of a dash node (dashd process).
+//! Interface for the wallet constrained src/coinjoin part of a rubas node (rubasd process).
 class Client
 {
 public:

@@ -27,7 +27,7 @@ EXPECTED_CIRCULAR_DEPENDENCIES = (
     # split up in a MOVEONLY commit. These are removed in #21206.
     "wallet/receive -> wallet/wallet -> wallet/receive",
     "wallet/spend -> wallet/wallet -> wallet/spend",
-    # Dash
+    # Rubas
     "banman -> common/bloom -> evo/assetlocktx -> llmq/quorums -> net -> banman",
     "banman -> common/bloom -> evo/assetlocktx -> llmq/signing -> net_processing -> banman",
     "coinjoin/client -> net_processing -> coinjoin/client",

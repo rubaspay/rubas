@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The Rubas Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -541,13 +541,13 @@ static RPCHelpMan masternodelist_helper(bool is_composite)
         "  json           - Print info in JSON format (can be additionally filtered, partial match)\n"
         "  lastpaidblock  - Print the last block height a node was paid on the network\n"
         "  lastpaidtime   - Print the last time a node was paid on the network\n"
-        "  owneraddress   - Print the masternode owner Dash address\n"
-        "  payee          - Print the masternode payout Dash address (can be additionally filtered,\n"
+        "  owneraddress   - Print the masternode owner Rubas address\n"
+        "  payee          - Print the masternode payout Rubas address (can be additionally filtered,\n"
         "                   partial match)\n"
         "  pubKeyOperator - Print the masternode operator public key\n"
         "  status         - Print masternode status: ENABLED / POSE_BANNED\n"
         "                   (can be additionally filtered, partial match)\n"
-        "  votingaddress  - Print the masternode voting Dash address\n",
+        "  votingaddress  - Print the masternode voting Rubas address\n",
         {
             {"mode", RPCArg::Type::STR, RPCArg::DefaultHint{"json"}, "The mode to run list in"},
             {"filter", RPCArg::Type::STR, RPCArg::Default{""}, "Filter results. Partial match by outpoint by default in all modes, additional matches in some modes are also available"},
@@ -742,17 +742,17 @@ void RegisterMasternodeRPCCommands(CRPCTable &t)
 static const CRPCCommand commands[] =
 { //  category              actor (function)
   //  --------------------- -----------------------
-    { "dash",               &masternode_help,          },
-    { "dash",               &masternodelist_composite, },
-    { "dash",               &masternodelist,           },
-    { "dash",               &masternode_connect,       },
-    { "dash",               &masternode_count,         },
+    { "rubas",               &masternode_help,          },
+    { "rubas",               &masternodelist_composite, },
+    { "rubas",               &masternodelist,           },
+    { "rubas",               &masternode_connect,       },
+    { "rubas",               &masternode_count,         },
 #ifdef ENABLE_WALLET
-    { "dash",               &masternode_outputs,       },
+    { "rubas",               &masternode_outputs,       },
 #endif // ENABLE_WALLET
-    { "dash",               &masternode_status,        },
-    { "dash",               &masternode_payments,      },
-    { "dash",               &masternode_winners,       },
+    { "rubas",               &masternode_status,        },
+    { "rubas",               &masternode_payments,      },
+    { "rubas",               &masternode_winners,       },
     { "hidden",             &masternode_current,       },
     { "hidden",             &masternode_winner,        },
 };

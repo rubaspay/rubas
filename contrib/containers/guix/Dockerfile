@@ -82,12 +82,12 @@ COPY --from=docker_root ./scripts/setup-sdk    /usr/local/bin/setup-sdk
 # Create directories for mounting to save/restore cache and grant necessary permissions
 RUN mkdir -p \
         /home/ubuntu/.cache \
-        /src/dash/depends/{built,sources,work}; \
+        /src/rubas/depends/{built,sources,work}; \
     chown -R ${USER_ID}:${GROUP_ID} \
         /home/ubuntu/.cache \
         /src;
 
-WORKDIR "/src/dash"
+WORKDIR "/src/rubas"
 
 # Switch to unprivileged context
 USER ubuntu

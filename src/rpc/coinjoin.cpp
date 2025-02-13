@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2024 The Dash Core developers
+// Copyright (c) 2019-2024 The Rubas Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -470,16 +470,16 @@ void RegisterCoinJoinRPCCommands(CRPCTable &t)
 static const CRPCCommand commands[] =
 { //  category               actor (function)
   //  ---------------------  -----------------------
-    { "dash",                &getcoinjoininfo,        },
+    { "rubas",                &getcoinjoininfo,        },
 #ifdef ENABLE_WALLET
-    { "dash",                &coinjoin,               },
-    { "dash",                &coinjoin_reset,         },
-    { "dash",                &coinjoin_start,         },
-    { "dash",                &coinjoin_stop,          },
-    { "dash",                &coinjoinsalt,           },
-    { "dash",                &coinjoinsalt_generate,  },
-    { "dash",                &coinjoinsalt_get,       },
-    { "dash",                &coinjoinsalt_set,       },
+    { "rubas",                &coinjoin,               },
+    { "rubas",                &coinjoin_reset,         },
+    { "rubas",                &coinjoin_start,         },
+    { "rubas",                &coinjoin_stop,          },
+    { "rubas",                &coinjoinsalt,           },
+    { "rubas",                &coinjoinsalt_generate,  },
+    { "rubas",                &coinjoinsalt_get,       },
+    { "rubas",                &coinjoinsalt_set,       },
 
     { "hidden",              &getpoolinfo,            },
 #endif // ENABLE_WALLET

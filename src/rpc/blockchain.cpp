@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Dash Core developers
+// Copyright (c) 2014-2025 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1209,9 +1209,9 @@ static RPCHelpMan gettxout()
                         {RPCResult::Type::STR_HEX, "hex", ""},
                         {RPCResult::Type::NUM, "reqSigs", /* optional */ true, "(DEPRECATED, returned only if config option -deprecatedrpc=addresses is passed) Number of required signatures"},
                         {RPCResult::Type::STR_HEX, "type", "The type, eg pubkeyhash"},
-                        {RPCResult::Type::STR, "address", /* optional */ true, "Dash address (only if a well-defined address exists)"},
-                        {RPCResult::Type::ARR, "addresses", /* optional */ true, "(DEPRECATED, returned only if config option -deprecatedrpc=addresses is passed) Array of Dash addresses",
-                            {{RPCResult::Type::STR, "address", "Dash address"}}},
+                        {RPCResult::Type::STR, "address", /* optional */ true, "Rubas address (only if a well-defined address exists)"},
+                        {RPCResult::Type::ARR, "addresses", /* optional */ true, "(DEPRECATED, returned only if config option -deprecatedrpc=addresses is passed) Array of Rubas addresses",
+                            {{RPCResult::Type::STR, "address", "Rubas address"}}},
                     }},
                 {RPCResult::Type::BOOL, "coinbase", "Coinbase or not"},
             }},

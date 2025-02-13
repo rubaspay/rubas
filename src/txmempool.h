@@ -891,7 +891,7 @@ private:
     void UpdateChildrenForRemoval(txiter entry) EXCLUSIVE_LOCKS_REQUIRED(cs);
 
     /**
-     * addUnchecked extension for Dash-specific transactions (ProTx).
+     * addUnchecked extension for Rubas-specific transactions (ProTx).
      * Depends on CDeterministicMNManager.
      */
     void addUncheckedProTx(indexed_transaction_set::iterator& newit, const CTransaction& tx);

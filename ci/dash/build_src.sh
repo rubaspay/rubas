@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2021-2024 The Dash Core developers
+# Copyright (c) 2021-2024 The Rubas Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
@@ -9,7 +9,7 @@ export LC_ALL=C.UTF-8
 
 set -e
 
-source ./ci/dash/matrix.sh
+source ./ci/rubas/matrix.sh
 
 unset CC; unset CXX
 unset DISPLAY
@@ -48,7 +48,7 @@ cd build-ci
 bash -c "../configure $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG" || ( cat config.log && false)
 make distdir VERSION=$BUILD_TARGET
 
-cd dashcore-$BUILD_TARGET
+cd rubascore-$BUILD_TARGET
 bash -c "./configure $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG" || ( cat config.log && false)
 
 make $MAKEJOBS $GOAL || ( echo "Build failure. Verbose build follows." && make $GOAL V=1 ; false )

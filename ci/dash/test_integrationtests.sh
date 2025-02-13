@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2018-2024 The Dash Core developers
+# Copyright (c) 2018-2024 The Rubas Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
@@ -11,7 +11,7 @@ set -e
 
 PASS_ARGS="$*"
 
-source ./ci/dash/matrix.sh
+source ./ci/rubas/matrix.sh
 
 if [ "$RUN_FUNCTIONAL_TESTS" != "true" ]; then
   echo "Skipping integration tests"
@@ -25,7 +25,7 @@ if [ -n "$PREVIOUS_RELEASES_TO_DOWNLOAD" ]; then
   ./test/get_previous_releases.py -b -t "$PREVIOUS_RELEASES_DIR" ${PREVIOUS_RELEASES_TO_DOWNLOAD}
 fi
 
-cd build-ci/dashcore-$BUILD_TARGET
+cd build-ci/rubascore-$BUILD_TARGET
 
 if [ "$SOCKETEVENTS" = "" ]; then
   # Let's switch socketevents mode to some random mode
@@ -39,7 +39,7 @@ if [ "$SOCKETEVENTS" = "" ]; then
   fi
 fi
 echo "Using socketevents mode: $SOCKETEVENTS"
-EXTRA_ARGS="--dashd-arg=-socketevents=$SOCKETEVENTS"
+EXTRA_ARGS="--rubasd-arg=-socketevents=$SOCKETEVENTS"
 
 set +e
 LD_LIBRARY_PATH=$DEPENDS_DIR/$HOST/lib ./test/functional/test_runner.py --ci --attempts=3 --ansi --combinedlogslen=4000 --timeout-factor=${TEST_RUNNER_TIMEOUT_FACTOR} ${TEST_RUNNER_EXTRA} --failfast --nocleanup --tmpdir=$(pwd)/testdatadirs $PASS_ARGS $EXTRA_ARGS

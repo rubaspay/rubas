@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Dash Core developers
+// Copyright (c) 2014-2025 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -45,7 +45,7 @@ class CDeterministicMNList;
 class CGovernanceObject;
 typedef std::shared_ptr<CDeterministicMNList> CDeterministicMNListPtr;
 
-/** Model for Dash network client. */
+/** Model for Rubas network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT

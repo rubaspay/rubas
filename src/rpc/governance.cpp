@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2025 The Dash Core developers
+// Copyright (c) 2014-2025 The Rubas Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -168,9 +168,9 @@ static RPCHelpMan gobject_prepare()
 
     CGovernanceObject govobj(hashParent, nRevision, nTime, uint256(), strDataHex);
 
-    // This command is dangerous because it consumes 5 DASH irreversibly.
+    // This command is dangerous because it consumes 5 RUBAS irreversibly.
     // If params are lost, it's very hard to bruteforce them and yet
-    // users ignore all instructions on dashcentral etc. and do not save them...
+    // users ignore all instructions on rubascentral etc. and do not save them...
     // Let's log them here and hope users do not mess with debug.log
     LogPrintf("gobject_prepare -- params: %s %s %s %s, data: %s, hash: %s\n",
                 request.params[0].getValStr(), request.params[1].getValStr(),
@@ -1077,25 +1077,25 @@ void RegisterGovernanceRPCCommands(CRPCTable &t)
 static const CRPCCommand commands[] =
 { //  category              actor (function)
   //  --------------------- -----------------------
-    /* Dash features */
-    { "dash",               &getgovernanceinfo,         },
-    { "dash",               &getsuperblockbudget,       },
-    { "dash",               &gobject,                   },
-    { "dash",               &gobject_count,             },
-    { "dash",               &gobject_deserialize,       },
-    { "dash",               &gobject_check,             },
+    /* Rubas features */
+    { "rubas",               &getgovernanceinfo,         },
+    { "rubas",               &getsuperblockbudget,       },
+    { "rubas",               &gobject,                   },
+    { "rubas",               &gobject_count,             },
+    { "rubas",               &gobject_deserialize,       },
+    { "rubas",               &gobject_check,             },
 #ifdef ENABLE_WALLET
-    { "dash",               &gobject_prepare,           },
-    { "dash",               &gobject_list_prepared,     },
-    { "dash",               &gobject_vote_many,         },
-    { "dash",               &gobject_vote_alias,        },
+    { "rubas",               &gobject_prepare,           },
+    { "rubas",               &gobject_list_prepared,     },
+    { "rubas",               &gobject_vote_many,         },
+    { "rubas",               &gobject_vote_alias,        },
 #endif
-    { "dash",               &gobject_submit,            },
-    { "dash",               &gobject_list,              },
-    { "dash",               &gobject_diff,              },
-    { "dash",               &gobject_get,               },
-    { "dash",               &gobject_getcurrentvotes,   },
-    { "dash",               &voteraw,                   },
+    { "rubas",               &gobject_submit,            },
+    { "rubas",               &gobject_list,              },
+    { "rubas",               &gobject_diff,              },
+    { "rubas",               &gobject_get,               },
+    { "rubas",               &gobject_getcurrentvotes,   },
+    { "rubas",               &voteraw,                   },
 };
 // clang-format on
     for (const auto& command : commands) {

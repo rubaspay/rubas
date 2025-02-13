@@ -1,4 +1,4 @@
-// Copyright (c) 2021-2024 The Dash Core developers
+// Copyright (c) 2021-2024 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -94,7 +94,7 @@ class ProposalModel : public QAbstractTableModel
 private:
     QList<const Proposal*> m_data;
     int nAbsVoteReq = 0;
-    int m_display_unit{BitcoinUnits::DASH};
+    int m_display_unit{BitcoinUnits::RUBAS};
 
 public:
     explicit ProposalModel(QObject* parent = nullptr) :

@@ -1,23 +1,23 @@
 FROM phusion/baseimage:noble-1.0.0
-LABEL maintainer="Dash Developers <dev@dash.org>"
-LABEL description="Dockerised DashCore, built from CI"
+LABEL maintainer="Rubas Developers <dev@rubas.org>"
+LABEL description="Dockerised RubasCore, built from CI"
 
 # Setup unprivileged user
 ARG USER_ID=1000 \
     GROUP_ID=1000
-RUN groupmod -g ${GROUP_ID} -n dash ubuntu; \
-    usermod -u ${USER_ID} -md /home/dash -l dash ubuntu; \
-    mkdir -p /home/dash/.dashcore && \
-    chown ${USER_ID}:${GROUP_ID} -R /home/dash
+RUN groupmod -g ${GROUP_ID} -n rubas ubuntu; \
+    usermod -u ${USER_ID} -md /home/rubas -l rubas ubuntu; \
+    mkdir -p /home/rubas/.rubascore && \
+    chown ${USER_ID}:${GROUP_ID} -R /home/rubas
 
 COPY bin/* /usr/local/bin/
 
 RUN chmod a+x /usr/local/bin/*
 
-USER dash
+USER rubas
 
-VOLUME ["/home/dash"]
+VOLUME ["/home/rubas"]
 
 EXPOSE 9998 9999 19998 19999
 
-WORKDIR /home/dash
+WORKDIR /home/rubas

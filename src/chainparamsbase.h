@@ -11,8 +11,8 @@
 class ArgsManager;
 
 /**
- * CBaseChainParams defines the base parameters (shared between dash-cli and dashd)
- * of a given instance of the Dash system.
+ * CBaseChainParams defines the base parameters (shared between rubas-cli and rubasd)
+ * of a given instance of the Rubas system.
  */
 class CBaseChainParams
 {

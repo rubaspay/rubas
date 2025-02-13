@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2023 The Dash Core developers
+// Copyright (c) 2014-2023 The Rubas Core developers
 
 #include <governance/validators.h>
 #include <util/strencodings.h>

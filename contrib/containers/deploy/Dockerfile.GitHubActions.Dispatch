@@ -16,7 +16,7 @@ RUN apt-get update && \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /home/dash
+WORKDIR /home/rubas
 
 COPY . .
 
@@ -38,27 +38,27 @@ RUN make -j`nproc | awk '{x=$1/2; print x}'` && make install
 
 RUN mkdir built-target && \
   case "$TARGETPLATFORM" in \
-  "linux/arm64") cp depends/arm-linux-gnueabihf/bin/dash* /home/dash/built-target ;; \
-  "linux/amd64") cp depends/x86_64-pc-linux-gnu/bin/dash* /home/dash/built-target ;; \
+  "linux/arm64") cp depends/arm-linux-gnueabihf/bin/rubas* /home/rubas/built-target ;; \
+  "linux/amd64") cp depends/x86_64-pc-linux-gnu/bin/rubas* /home/rubas/built-target ;; \
 esac
 
 FROM ubuntu:noble
-LABEL maintainer="Dash Developers <dev@dash.org>"
-LABEL description="Dockerised DashCore"
+LABEL maintainer="Rubas Developers <dev@rubas.org>"
+LABEL description="Dockerised RubasCore"
 
 ARG USER_ID
 ARG GROUP_ID
 ARG TAG
 
-ENV HOME="/home/dash"
+ENV HOME="/home/rubas"
 
 # Setup unprivileged user
 ARG USER_ID=1000 \
     GROUP_ID=1000
-RUN groupmod -g ${GROUP_ID} -n dash ubuntu; \
-    usermod -u ${USER_ID} -md /home/dash -l dash ubuntu; \
-    mkdir -p /home/dash/.dashcore && \
-    chown ${USER_ID}:${GROUP_ID} -R /home/dash
+RUN groupmod -g ${GROUP_ID} -n rubas ubuntu; \
+    usermod -u ${USER_ID} -md /home/rubas -l rubas ubuntu; \
+    mkdir -p /home/rubas/.rubascore && \
+    chown ${USER_ID}:${GROUP_ID} -R /home/rubas
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
@@ -66,15 +66,15 @@ RUN apt-get update && \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /home/dash/built-target/dash* /usr/local/bin
+COPY --from=builder /home/rubas/built-target/rubas* /usr/local/bin
 
-USER dash
+USER rubas
 
-VOLUME ["/home/dash"]
+VOLUME ["/home/rubas"]
 
 COPY docker/docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 9998 9999 19998 19999
 
-WORKDIR /home/dash
+WORKDIR /home/rubas

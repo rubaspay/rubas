@@ -1,6 +1,6 @@
 # Dependencies
 
-These are the dependencies used by Dash Core.
+These are the dependencies used by Rubas Core.
 You can find installation instructions in the `build-*.md` file for your platform.
 "Runtime" and "Version Used" are both in reference to the release binaries.
 
@@ -25,7 +25,7 @@ You can find installation instructions in the `build-*.md` file for your platfor
 
 | Dependency | Version used | Minimum required | Runtime |
 | --- | --- | --- | --- |
-| [libgmp](https://gmplib.org/download/gmp/)<sup>[ \* ](#note1)</sup> | 6.3.0 | [6.2.0](https://github.com/dashpay/bls-signatures/pull/92) | No |
+| [libgmp](https://gmplib.org/download/gmp/)<sup>[ \* ](#note1)</sup> | 6.3.0 | [6.2.0](https://github.com/rubaspay/bls-signatures/pull/92) | No |
 
 ### GUI
 | Dependency | Version used | Minimum required | Runtime |

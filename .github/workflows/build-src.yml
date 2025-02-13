@@ -39,7 +39,7 @@ jobs:
           git checkout develop
           git checkout "${GIT_HEAD}"
           BUILD_TARGET="${{ inputs.build-target }}"
-          source ./ci/dash/matrix.sh
+          source ./ci/rubas/matrix.sh
           echo "HOST=${HOST}" >> $GITHUB_OUTPUT
           echo "PR_BASE_SHA=${{ github.event.pull_request.base.sha || '' }}" >> $GITHUB_OUTPUT
         shell: bash
@@ -71,9 +71,9 @@ jobs:
           mkdir /output
           BASE_OUTDIR="/output"
           BUILD_TARGET="${{ inputs.build-target }}"
-          source ./ci/dash/matrix.sh
-          ./ci/dash/build_src.sh
-          ./ci/dash/test_unittests.sh
+          source ./ci/rubas/matrix.sh
+          ./ci/rubas/build_src.sh
+          ./ci/rubas/test_unittests.sh
         shell: bash
 
       - name: Upload build artifacts

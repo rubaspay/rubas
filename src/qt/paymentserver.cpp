@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,7 +38,7 @@
 #include <QUrlQuery>
 
 const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
-const QString BITCOIN_IPC_PREFIX("dash:");
+const QString BITCOIN_IPC_PREFIX("rubas:");
 
 //
 // Create a name that is unique for:
@@ -47,7 +47,7 @@ const QString BITCOIN_IPC_PREFIX("dash:");
 //
 static QString ipcServerName()
 {
-    QString name("DashQt");
+    QString name("RubasQt");
 
     // Append a simple hash of the datadir
     // Note that gArgs.GetDataDirNet() returns a different path
@@ -81,7 +81,7 @@ void PaymentServer::ipcParseCommandLine(int argc, char* argv[])
         QString arg(argv[i]);
         if (arg.startsWith("-")) continue;
 
-        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // dash: URI
+        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // rubas: URI
         {
             savedPaymentRequests.insert(arg);
         }
@@ -134,7 +134,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
     optionsModel(nullptr)
 {
     // Install global event filter to catch QFileOpenEvents
-    // on Mac: sent when you click dash: links
+    // on Mac: sent when you click rubas: links
     // other OSes: helpful when dealing with payment request files
     if (parent)
         parent->installEventFilter(this);
@@ -151,7 +151,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
         if (!uriServer->listen(name)) {
             // constructor is called early in init, so don't use "Q_EMIT message()" here
             QMessageBox::critical(nullptr, tr("Payment request error"),
-                tr("Cannot start dash: click-to-pay handler"));
+                tr("Cannot start rubas: click-to-pay handler"));
         }
         else {
             connect(uriServer, &QLocalServer::newConnection, this, &PaymentServer::handleURIConnection);
@@ -164,7 +164,7 @@ PaymentServer::~PaymentServer()
 }
 
 //
-// OSX-specific way of handling dash: URIs
+// OSX-specific way of handling rubas: URIs
 //
 bool PaymentServer::eventFilter(QObject *object, QEvent *event)
 {
@@ -199,12 +199,12 @@ void PaymentServer::handleURIOrFile(const QString& s)
         return;
     }
 
-    if (s.startsWith("dash://", Qt::CaseInsensitive))
+    if (s.startsWith("rubas://", Qt::CaseInsensitive))
     {
-        Q_EMIT message(tr("URI handling"), tr("'dash://' is not a valid URI. Use 'dash:' instead."),
+        Q_EMIT message(tr("URI handling"), tr("'rubas://' is not a valid URI. Use 'rubas:' instead."),
             CClientUIInterface::MSG_ERROR);
     }
-    else if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // dash: URI
+    else if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // rubas: URI
     {
         QUrlQuery uri((QUrl(s)));
         // normal URI
@@ -231,7 +231,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
             }
             else
                 Q_EMIT message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid Dash address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid Rubas address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;

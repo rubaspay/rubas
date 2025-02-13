@@ -299,9 +299,9 @@ class BackwardsCompatibilityTest(BitcoinTestFramework):
             # assert info['keypoolsize'] == 0
         else:
             # Descriptor wallets appear to be corrupted wallets to old software
-            assert_raises_rpc_error(-4, "Wallet requires newer version of Dash Core", node_v19.loadwallet, "w1")
-            assert_raises_rpc_error(-4, "Wallet requires newer version of Dash Core", node_v19.loadwallet, "w2")
-            assert_raises_rpc_error(-4, "Wallet requires newer version of Dash Core", node_v19.loadwallet, "w3")
+            assert_raises_rpc_error(-4, "Wallet requires newer version of Rubas Core", node_v19.loadwallet, "w1")
+            assert_raises_rpc_error(-4, "Wallet requires newer version of Rubas Core", node_v19.loadwallet, "w2")
+            assert_raises_rpc_error(-4, "Wallet requires newer version of Rubas Core", node_v19.loadwallet, "w3")
             assert_raises_rpc_error(-18, "Data is not in recognized format", node_v18.loadwallet, "w1")
             assert_raises_rpc_error(-18, "Data is not in recognized format", node_v18.loadwallet, "w2")
             assert_raises_rpc_error(-18, "Data is not in recognized format", node_v18.loadwallet, "w3")
@@ -328,10 +328,10 @@ class BackwardsCompatibilityTest(BitcoinTestFramework):
 
         # Instead, we stop node and try to launch it with the wallet:
         self.stop_node(5)
-        # it expected to fail with error 'DBErrors::TOO_NEW' but Dash Core can open v18 by version 17
+        # it expected to fail with error 'DBErrors::TOO_NEW' but Rubas Core can open v18 by version 17
         # can be implemented in future if there's any incompatible versions
-        #node_v17.assert_start_raises_init_error(["-wallet=w3_v18"], "Error: Error loading w3_v18: Wallet requires newer version of Dash Core")
-        #node_v17.assert_start_raises_init_error(["-wallet=w3"], "Error: Error loading w3: Wallet requires newer version of Dash Core")
+        #node_v17.assert_start_raises_init_error(["-wallet=w3_v18"], "Error: Error loading w3_v18: Wallet requires newer version of Rubas Core")
+        #node_v17.assert_start_raises_init_error(["-wallet=w3"], "Error: Error loading w3: Wallet requires newer version of Rubas Core")
         self.start_node(5)
 
         # Open most recent wallet in v0.16 (no loadwallet RPC)

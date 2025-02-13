@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2024 The Dash Core developers
+# Copyright (c) 2015-2024 The Rubas Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,15 +12,15 @@ Checks simple PoSe system based on LLMQ commitments
 
 import time
 
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import RubasTestFramework
 from test_framework.util import assert_equal, force_finish_mnsync, p2p_port
 
 
-class LLMQSimplePoSeTest(DashTestFramework):
+class LLMQSimplePoSeTest(RubasTestFramework):
     def set_test_params(self):
         self.extra_args = [[ f'-testactivationheight=dip0024@9999' ]] * 6
-        self.set_dash_test_params(6, 5)
-        self.set_dash_llmq_test_params(5, 3)
+        self.set_rubas_test_params(6, 5)
+        self.set_rubas_llmq_test_params(5, 3)
         # rotating quorums add instability for this functional tests
 
     def run_test(self):

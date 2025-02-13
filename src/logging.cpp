@@ -183,7 +183,7 @@ const CLogCategoryDesc LogCategories[] =
     {BCLog::ALL, "1"},
     {BCLog::ALL, "all"},
 
-    //Start Dash
+    //Start Rubas
     {BCLog::CHAINLOCKS, "chainlocks"},
     {BCLog::GOBJECT, "gobject"},
     {BCLog::INSTANTSEND, "instantsend"},
@@ -197,8 +197,8 @@ const CLogCategoryDesc LogCategories[] =
     {BCLog::NETCONN, "netconn"},
     {BCLog::CREDITPOOL, "creditpool"},
     {BCLog::EHF, "ehf"},
-    {BCLog::DASH, "dash"},
-    //End Dash
+    {BCLog::RUBAS, "rubas"},
+    //End Rubas
 };
 
 bool GetLogCategory(BCLog::LogFlags& flag, const std::string& str)
@@ -297,7 +297,7 @@ std::string LogCategoryToStr(BCLog::LogFlags category)
         return "blockstorage";
     case BCLog::LogFlags::TXRECONCILIATION:
         return "txreconciliation";
-    /* Start Dash */
+    /* Start Rubas */
     case BCLog::LogFlags::CHAINLOCKS:
         return "chainlocks";
     case BCLog::LogFlags::GOBJECT:
@@ -324,11 +324,11 @@ std::string LogCategoryToStr(BCLog::LogFlags category)
         return "creditpool";
     case BCLog::LogFlags::EHF:
         return "ehf";
-    case BCLog::LogFlags::DASH:
-        return "dash";
+    case BCLog::LogFlags::RUBAS:
+        return "rubas";
     case BCLog::LogFlags::NET_NETCONN:
         return "net|netconn";
-    /* End Dash */
+    /* End Rubas */
     case BCLog::LogFlags::ALL:
         return "all";
     }
@@ -363,7 +363,7 @@ std::vector<LogCategory> BCLog::Logger::LogCategoriesList(bool enabled_only) con
 
     std::vector<LogCategory> ret;
     for (const CLogCategoryDesc& category_desc : categories) {
-        if (category_desc.flag == BCLog::NONE || category_desc.flag == BCLog::ALL || category_desc.flag == BCLog::DASH) continue;
+        if (category_desc.flag == BCLog::NONE || category_desc.flag == BCLog::ALL || category_desc.flag == BCLog::RUBAS) continue;
         LogCategory catActive;
         catActive.category = category_desc.category;
         catActive.active = WillLogCategory(category_desc.flag);
@@ -463,7 +463,7 @@ void BCLog::Logger::LogPrintStr(const std::string& str, const std::string& loggi
     }
 
     if (m_log_threadnames && m_started_new_line) {
-        // 16 chars total, "dash-" is 5 of them and another 1 is a NUL terminator
+        // 16 chars total, "rubas-" is 5 of them and another 1 is a NUL terminator
         str_prefixed.insert(0, "[" + strprintf("%10s", util::ThreadGetInternalName()) + "] ");
     }
 

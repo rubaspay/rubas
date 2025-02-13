@@ -9,7 +9,7 @@ from test_framework.address import ADDRESS_BCRT1_UNSPENDABLE, ADDRESS_BCRT1_P2SH
 from test_framework.blocktools import create_block, create_coinbase
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.messages import (
-    dashhash,
+    rubashash,
     hash256,
     tx_from_hex,
 )
@@ -30,8 +30,8 @@ except ImportError:
 def hash256_reversed(byte_str):
     return hash256(byte_str)[::-1]
 
-def dashhash_reversed(byte_str):
-    return dashhash(byte_str)[::-1]
+def rubashash_reversed(byte_str):
+    return rubashash(byte_str)[::-1]
 
 class ZMQSubscriber:
     def __init__(self, socket, topic):
@@ -201,7 +201,7 @@ class ZMQTest (BitcoinTestFramework):
 
             # Should receive the generated raw block.
             block = rawblock.receive()
-            assert_equal(genhashes[x], dashhash_reversed(block[:80]).hex())
+            assert_equal(genhashes[x], rubashash_reversed(block[:80]).hex())
 
             # Should receive the generated block hash.
             hash = hashblock.receive().hex()

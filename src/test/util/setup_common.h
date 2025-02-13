@@ -1,5 +1,5 @@
 // Copyright (c) 2015-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -83,17 +83,17 @@ static inline bool InsecureRandBool() { return g_insecure_rand_ctx.randbool(); }
 
 static constexpr CAmount CENT{1000000};
 
-/** Initialize Dash-specific components during chainstate initialization (NodeContext-friendly aliases) */
-void DashChainstateSetup(ChainstateManager& chainman,
+/** Initialize Rubas-specific components during chainstate initialization (NodeContext-friendly aliases) */
+void RubasChainstateSetup(ChainstateManager& chainman,
                          NodeContext& node,
                          bool fReset,
                          bool fReindexChainState,
                          const Consensus::Params& consensus_params);
-void DashChainstateSetupClose(NodeContext& node);
+void RubasChainstateSetupClose(NodeContext& node);
 
-/** Initialize Dash-specific components after chainstate initialization */
-void DashPostChainstateSetup(NodeContext& node);
-void DashPostChainstateSetupClose(NodeContext& node);
+/** Initialize Rubas-specific components after chainstate initialization */
+void RubasPostChainstateSetup(NodeContext& node);
+void RubasPostChainstateSetupClose(NodeContext& node);
 
 /** Basic testing setup.
  * This just configures logging, data dir and chain parameters.

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2020 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The Rubas Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -24,9 +24,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(DASH);
-    unitlist.append(mDASH);
-    unitlist.append(uDASH);
+    unitlist.append(RUBAS);
+    unitlist.append(mRUBAS);
+    unitlist.append(uRUBAS);
     unitlist.append(duffs);
     return unitlist;
 }
@@ -35,9 +35,9 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case DASH:
-    case mDASH:
-    case uDASH:
+    case RUBAS:
+    case mRUBAS:
+    case uRUBAS:
     case duffs:
         return true;
     default:
@@ -51,9 +51,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case DASH: return QString("DASH");
-            case mDASH: return QString("mDASH");
-            case uDASH: return QString::fromUtf8("μDASH");
+            case RUBAS: return QString("RUBAS");
+            case mRUBAS: return QString("mRUBAS");
+            case uRUBAS: return QString::fromUtf8("μRUBAS");
             case duffs: return QString("duffs");
             default: return QString("???");
         }
@@ -62,9 +62,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case DASH: return QString("tDASH");
-            case mDASH: return QString("mtDASH");
-            case uDASH: return QString::fromUtf8("μtDASH");
+            case RUBAS: return QString("tRUBAS");
+            case mRUBAS: return QString("mtRUBAS");
+            case uRUBAS: return QString::fromUtf8("μtRUBAS");
             case duffs: return QString("tduffs");
             default: return QString("???");
         }
@@ -77,10 +77,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case DASH: return QString("Dash");
-            case mDASH: return QString("Milli-Dash (1 / 1" THIN_SP_UTF8 "000)");
-            case uDASH: return QString("Micro-Dash (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-Dash (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case RUBAS: return QString("Rubas");
+            case mRUBAS: return QString("Milli-Rubas (1 / 1" THIN_SP_UTF8 "000)");
+            case uRUBAS: return QString("Micro-Rubas (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case duffs: return QString("Ten Nano-Rubas (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -88,10 +88,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case DASH: return QString("TestDashs");
-            case mDASH: return QString("Milli-TestDash (1 / 1" THIN_SP_UTF8 "000)");
-            case uDASH: return QString("Micro-TestDash (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-TestDash (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case RUBAS: return QString("TestRubass");
+            case mRUBAS: return QString("Milli-TestRubas (1 / 1" THIN_SP_UTF8 "000)");
+            case uRUBAS: return QString("Micro-TestRubas (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case duffs: return QString("Ten Nano-TestRubas (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -101,9 +101,9 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case DASH:  return 100000000;
-    case mDASH: return 100000;
-    case uDASH: return 100;
+    case RUBAS:  return 100000000;
+    case mRUBAS: return 100000;
+    case uRUBAS: return 100;
     case duffs: return 1;
     default:   return 100000000;
     }
@@ -113,9 +113,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case DASH: return 8;
-    case mDASH: return 5;
-    case uDASH: return 2;
+    case RUBAS: return 8;
+    case mRUBAS: return 5;
+    case uRUBAS: return 2;
     case duffs: return 0;
     default: return 0;
     }

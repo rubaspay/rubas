@@ -53,7 +53,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the Dash Qt UI.
+/** Utility functions used by the Rubas Qt UI.
  */
 namespace GUIUtil
 {
@@ -144,7 +144,7 @@ namespace GUIUtil
      */
     void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut);
 
-    // Parse "dash:" URI into recipient object, return true on successful parsing
+    // Parse "rubas:" URI into recipient object, return true on successful parsing
     bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out);
     bool parseBitcoinURI(QString uri, SendCoinsRecipient *out);
     bool validateBitcoinURI(const QString& uri);
@@ -245,7 +245,7 @@ namespace GUIUtil
     // Open debug.log
     void openDebugLogfile();
 
-    // Open dash.conf
+    // Open rubas.conf
     void openConfigfile();
 
     // Browse backup folder
@@ -353,7 +353,7 @@ namespace GUIUtil
     /** get font size with GUIUtil::fontScale applied */
     double getScaledFontSize(int nSize);
 
-    /** Load dash specific appliciation fonts */
+    /** Load rubas specific appliciation fonts */
     bool loadFonts();
     /** Check if the fonts have been loaded successfully */
     bool fontsLoaded();
@@ -397,8 +397,8 @@ namespace GUIUtil
     /** Return the name of the currently active theme.*/
     QString getActiveTheme();
 
-    /** Check if a dash specific theme is activated (light/dark).*/
-    bool dashThemeActive();
+    /** Check if a rubas specific theme is activated (light/dark).*/
+    bool rubasThemeActive();
 
     /** Load the theme and update all UI elements according to the appearance settings. */
     void loadTheme(bool fForce = false);
