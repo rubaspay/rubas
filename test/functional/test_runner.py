@@ -294,7 +294,7 @@ BASE_SCRIPTS = [
     'wallet_upgradewallet.py --legacy-wallet',
     'wallet_importdescriptors.py --descriptors',
     'wallet_mnemonicbits.py --legacy-wallet',
-    # 'wallet_mnemonicbits.py --descriptors', # TODO : implement mnemonics for descriptor wallets
+    'wallet_mnemonicbits.py --descriptors',
     'rpc_bind.py --ipv4',
     'rpc_bind.py --ipv6',
     'rpc_bind.py --nonloopback',
@@ -314,6 +314,7 @@ BASE_SCRIPTS = [
     'wallet_encryption.py --legacy-wallet',
     'wallet_encryption.py --descriptors',
     'wallet_upgradetohd.py --legacy-wallet',
+    'wallet_upgradetohd.py --descriptors',
     'feature_dersig.py',
     'feature_cltv.py',
     'feature_new_quorum_type_activation.py',
